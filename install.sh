@@ -105,7 +105,7 @@ if [ "$third_party_install" == "1" ]; then
     cd -
 
     echo "Installing apex locally so that deepspeed will build"
-    sudo -H pip uninstall -y apex
+    pip uninstall -y apex
     sudo -H pip install third_party/apex/dist/apex*.whl
 fi
 if [ "$deepspeed_install" == "1" ]; then
