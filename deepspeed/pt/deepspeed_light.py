@@ -264,12 +264,12 @@ class DeepSpeedLight(Module):
         lr_scheduler = self._scheduler_from_config(self.optimizer)
         if lr_scheduler:
             logging.info(
-                f'DeepSpeed using configured LR scheduler = {self.scheduler_name()}')
-            self.lr_scheduler = lr_scheduler
+                'DeepSpeed using configured LR scheduler = {}'.format(self.scheduler_name()))
+           
         else:
             logging.warning('DeepSpeed using client LR scheduler')
             self.lr_scheduler = client_lr_scheduler
-        logging.info(f'DeepSpeed LR Scheduler = {self.lr_scheduler}')
+        logging.info('DeepSpeed LR Scheduler = {}'.format(self.lr_scheduler))
 
     def _configure_checkpointing(self, dist_init_required):
 
@@ -292,7 +292,7 @@ class DeepSpeedLight(Module):
                 scheduler = getattr(lr_schedules, scheduler_name)
             else:
                 assert hasattr(torch.optim.lr_scheduler, scheduler_name), \
-                    f"DeepSpeed does not recognize LR scheduler {scheduler_name}"
+                    "DeepSpeed does not recognize LR scheduler {}".format(scheduler_name)
 
                 scheduler = getattr(torch.optim.lr_scheduler, scheduler_name)
 
