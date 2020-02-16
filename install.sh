@@ -106,7 +106,7 @@ if [ "$third_party_install" == "1" ]; then
 
     echo "Installing apex locally so that deepspeed will build"
     pip uninstall -y apex
-    sudo -H pip install third_party/apex/dist/apex*.whl
+    pip install third_party/apex/dist/apex*.whl
 fi
 if [ "$deepspeed_install" == "1" ]; then
     echo "Installing deepspeed"
@@ -116,13 +116,13 @@ fi
 if [ "$local_only" == "1" ]; then
     if [ "$third_party_install" == "1" ]; then
         echo "Installing apex locally"
-        sudo -H pip uninstall -y apex
-        sudo -H pip install third_party/apex/dist/apex*.whl
+        pip uninstall -y apex
+        pip install third_party/apex/dist/apex*.whl
     fi
     if [ "$deepspeed_install" == "1" ]; then
         echo "Installing deepspeed"
-        sudo -H pip uninstall -y deepspeed
-        sudo -H pip install dist/deepspeed*.whl
+        pip uninstall -y deepspeed
+        pip install dist/deepspeed*.whl
         python -c 'import deepspeed; print("deepspeed info:", deepspeed.__version__, deepspeed.__git_branch__, deepspeed.__git_hash__)'
         echo "Installation is successful"
     fi
