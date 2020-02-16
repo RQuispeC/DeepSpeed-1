@@ -92,7 +92,7 @@ if [ ! -f $hostfile ]; then
 fi
 
 # Ensure dependencies are installed locally
-sudo -H pip install -r requirements.txt
+pip install -r requirements.txt
 
 # Build wheels
 if [ "$third_party_install" == "1" ]; then
