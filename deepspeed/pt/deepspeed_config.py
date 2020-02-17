@@ -277,18 +277,18 @@ class DeepSpeedConfig(object):
         grad_acc = self.gradient_accumulation_steps
 
         assert train_batch > 0, \
-            f'Train batch size: {train_batch} has to be greater than 0'
+            'Train batch size: {} has to be greater than 0'.format(train_batch)
 
         assert micro_batch > 0, \
-            f'Micro batch size per gpu: {micro_batch} has to be greater than 0'
+            'Micro batch size per gpu: {} has to be greater than 0'.format(micro_batch)
 
         assert grad_acc > 0, \
-            f'Gradient accumulation steps: {grad_acc} has to be greater than 0'
+            'Gradient accumulation steps: {} has to be greater than 0'.format(grad_acc)
 
         assert train_batch == micro_batch * grad_acc * self.world_size, \
-                (f'Check batch related parameters. Train_batch_size is not equal'
+                ('Check batch related parameters. Train_batch_size is not equal'
                 'to micro_batch_per_gpu * gradient_acc_step * world_size'
-                f'{train_batch} != {micro_batch} * {grad_acc} * {self.world_size}')
+                '{train_batch} != {micro_batch} * {grad_acc} * {self.world_size}'.format(train_batch, micro_batch, grad_acc, self.world_size))
 
     def _set_batch_related_parameters(self):
 
@@ -339,7 +339,7 @@ class DeepSpeedConfig(object):
                 'Either train_batch_size or micro_batch_per_gpu needs to be provided'
 
         print(
-            f' After Train batch {self.train_batch_size} micro_batch {self.train_micro_batch_size_per_gpu} and grad_acc {self.gradient_accumulation_steps}'
+            ' After Train batch {} micro_batch {} and grad_acc {}'.format(self.train_batch_size, self.train_micro_batch_size_per_gpu, self.gradient_accumulation_steps)
         )
 
     def _configure_train_batch_size(self):
