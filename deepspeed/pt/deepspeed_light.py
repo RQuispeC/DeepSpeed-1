@@ -562,7 +562,7 @@ class DeepSpeedLight(Module):
                                   torch.distributed.get_world_size() *
                                   self.gradient_accumulation_steps())
             self.summary_events = [
-                (f'Train/Samples/train_loss',
+                ('Train/Samples/train_loss',
                  loss.mean().item() * self.gradient_accumulation_steps(),
                  self.sample_count)
             ]
@@ -648,7 +648,7 @@ class DeepSpeedLight(Module):
 
         if self.is_gradient_accumulation_boundary() and self.tensorboard_enabled(
         ) and torch.distributed.get_rank() == 0:  # deepspeed tensorboard support for lr
-            self.summary_events = [(f'Train/Samples/lr',
+            self.summary_events = [('Train/Samples/lr',
                                     self.get_lr()[0],
                                     self.sample_count)]
             for event in self.summary_events:  # write_summary_events
@@ -668,11 +668,11 @@ class DeepSpeedLight(Module):
             if self.is_gradient_accumulation_boundary():
                 if self.tensorboard_enabled() and torch.distributed.get_rank(
                 ) == 0:  # this is done before the log because log resets timers
-                    self.summary_events = [(f'Train/Samples/elapsed_time_ms_forward', self.timers('forward').elapsed(reset=False) * 1000.0, self.sample_count), \
-                                            (f'Train/Samples/elapsed_time_ms_backward', self.timers('backward').elapsed(reset=False) * 1000.0, self.sample_count), \
-                                            (f'Train/Samples/elapsed_time_ms_backward_inner', self.timers('backward_inner').elapsed(reset=False) * 1000.0, self.sample_count), \
-                                            (f'Train/Samples/elapsed_time_ms_backward_allreduce', self.timers('backward_allreduce').elapsed(reset=False) * 1000.0, self.sample_count), \
-                                            (f'Train/Samples/elapsed_time_ms_step', self.timers('step').elapsed(reset=False) * 1000.0, self.sample_count)
+                    self.summary_events = [('Train/Samples/elapsed_time_ms_forward', self.timers('forward').elapsed(reset=False) * 1000.0, self.sample_count), \
+                                            ('Train/Samples/elapsed_time_ms_backward', self.timers('backward').elapsed(reset=False) * 1000.0, self.sample_count), \
+                                            ('Train/Samples/elapsed_time_ms_backward_inner', self.timers('backward_inner').elapsed(reset=False) * 1000.0, self.sample_count), \
+                                            ('Train/Samples/elapsed_time_ms_backward_allreduce', self.timers('backward_allreduce').elapsed(reset=False) * 1000.0, self.sample_count), \
+                                            ('Train/Samples/elapsed_time_ms_step', self.timers('step').elapsed(reset=False) * 1000.0, self.sample_count)
                                             ]
                     for event in self.summary_events:  # write_summary_events
                         self.summary_writer.add_scalar(event[0], event[1], event[2])
