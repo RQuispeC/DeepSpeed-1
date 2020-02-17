@@ -31,7 +31,7 @@ class FP16_UnfusedOptimizer(object):
         self.fused_lamb_legacy = fused_lamb_legacy
 
         if torch.distributed.get_rank() == 0:
-            logging.info(f'Fused Lamb Legacy : {self.fused_lamb_legacy} ')
+            logging.info('Fused Lamb Legacy : {} '.format(self.fused_lamb_legacy))
 
         if not torch.cuda.is_available:
             raise SystemError("Cannot use fp16 without CUDA.")
