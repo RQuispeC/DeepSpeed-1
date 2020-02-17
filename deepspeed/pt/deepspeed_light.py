@@ -512,7 +512,7 @@ class DeepSpeedLight(Module):
         else:
             if self.warn_unscaled_loss:
                 logging.warning(
-                    f'DeepSpeed unable to scale loss because of type: {type(loss)}')
+                    'DeepSpeed unable to scale loss because of type: {}'.format(type(loss)))
                 self.warn_unscaled_loss = False
 
         return loss
