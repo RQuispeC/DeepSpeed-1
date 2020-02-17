@@ -1014,7 +1014,7 @@ class DeepSpeedLight(Module):
 
         except:
             logging.error(
-                f'Failed Saving Zero model checkpoint to {save_path} with tag {tag}')
+                'Failed Saving Zero model checkpoint to {} with tag {}'.format(save_path, tag))
 
         zero_sd = {'optimizer_state_dict': self.optimizer.state_dict()}
         torch.save(zero_sd, zero_checkpoint_name)
