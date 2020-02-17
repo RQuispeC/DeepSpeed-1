@@ -959,7 +959,7 @@ class DeepSpeedLight(Module):
             if self.save_zero_checkpoint:
                 self._save_zero_checkpoint(save_dir, tag)
         except:
-            logging.error(f'Failed Saving model checkpoint to {save_dir} with tag {tag}')
+            logging.error('Failed Saving model checkpoint to {} with tag {}'.format(save_dir, tag))
             return False
         return True
 
@@ -978,7 +978,7 @@ class DeepSpeedLight(Module):
                         self._ensure_directory_exists(checkpoint_name)
                 except:
                     logging.error(
-                        f'Failed Saving model checkpoint to {save_dir} with tag {tag}')
+                        'Failed Saving model checkpoint to {} with tag {}'.format(save_dir, tag))
                     return False
             dist.barrier()
 
